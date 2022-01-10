@@ -30,7 +30,7 @@ class App extends React.Component<IProps, IState> {
         super(props);
 
         // check if token exists in local storage to omit METAMASK signature
-        // ip.clearToken();
+        ip.clearToken();
         const token = ip.getToken();
         let rawToken = ''
         if (token) {
@@ -75,7 +75,7 @@ class App extends React.Component<IProps, IState> {
 
         // call ip service to sign with dApp UP
         const m = randomMessage(40);
-        await ip.signMessage("0x", m, true)
+        await ip.signMessage("0x", m, false)
             .then(r => this.onMessageReturnedFromIPProvider(r))
             .catch(e => {
                 console.log(e);
@@ -87,7 +87,7 @@ class App extends React.Component<IProps, IState> {
         const signature = await web3.eth.sign(web3.utils.sha3(signedServerMessage.signature.substring(2)) || "", this.state.account)
 
         // use signature to authenticate with ip service
-        await ip.requestToken(signedServerMessage.message, signedServerMessage.signature, signature, "0x", true, [getEnvironment().audience])
+        await ip.requestToken(signedServerMessage.message, signedServerMessage.signature.substring(2), signature, "0x", false, [getEnvironment().audience])
             .then(response => {
                 this.setState((previousState, props) => ({token: response.token}));
             })

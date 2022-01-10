@@ -5,7 +5,7 @@ export type Environment = {
 };
 
 const devEnvironment = {
-    ipServiceURL: 'dev.auth-three.com',
+    ipServiceURL: 'https://dev.auth-three.com',
     apiBaseURL: 'http://localhost:8001',
     audience: 'http://localhost:8001',
 }

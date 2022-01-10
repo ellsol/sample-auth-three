@@ -50,7 +50,7 @@ export class IPClient implements Authenticator {
             message: message,
             originalAppSignature: originalAppSignature,
             signature: clientSignature,
-            signaturePrefix: true,
+            signaturePrefix: signaturePrefix,
             userERC725Address: userERC725Address,
             audiences: audiences
         }).then(response => {

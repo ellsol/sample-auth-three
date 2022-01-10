@@ -29,13 +29,14 @@ the DApp (The IP-Service might manage more than one DApp). The IP-Service respon
 a signature of message M signed with a ERC725Key that has signing rights in the universal profile
 ERC725Address.
 
-POST /auth/sign
+POST /up/sign
 
 Request
 ```json
 {
-  "erc725Address": "string",
-  "messageBase64": "string"
+  "appERC725Address": "string",
+  "message": "string",
+  "signaturePrefix": "boolean"
 }
 ```
 
@@ -43,10 +44,11 @@ Response
 
 ```json
 {
-  "erc725Address": "string",
-  "erc725Key": "string",
-  "messageBase64": "string",
-  "signatureHex": "string"
+  "appERC725Address": "string",
+  "controllerKeyOfApp": "string",
+  "message": "string",
+  "signature": "string",
+  "signaturePrefix": "boolean"
 }
 ```
 
@@ -66,18 +68,19 @@ How to construct the signature:
 
     signature = keccak(originalSignatureHex.ToByte())
 
-POST /auth/token
+POST /up/token
 
 Request
 ```json
 {
-  "audience": [
+  "audiences": [
     "string"
   ],
-  "erc725Address": "string",
-  "messageBase64": "string",
-  "originalSignatureHex": "string",
-  "signatureHex": "string"
+  "userERC725Address": "string",
+  "message": "string",
+  "originalAppSignature": "string",
+  "signature": "string",
+  "signaturePrefix": "boolean"
 }
 ```
 
@@ -134,7 +137,7 @@ Not recommended but also possible is to call verification endpoint at the IP-Ser
 The IP-Service will respond with the UserIdentity(erc725Address + erc726Key)
 
 
-POST /auth/token/verify
+POST /up/token/verify
 
 Request
 ```json
@@ -147,8 +150,8 @@ Response
 
 ```json
 {
-  "ERC725Address": "string",
-  "ERC725Key": "string"
+  "erc725Address": "string",
+  "erc725ControllerKey": "string"
 }
 ```
  

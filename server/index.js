@@ -18,7 +18,6 @@ const client = jwksClient({
 });
 
 function getKey(header, callback) {
-    console.log(issuer + '/.well-known/jwks')
     client.getSigningKey(header.kid, function (err, key) {
         if(err) {
             console.log(err)

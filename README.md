@@ -21,6 +21,7 @@ and run
 
 ## Client App
 
+NOTE: You need to have METAMASK installed
 
 To build the server app
 
@@ -29,6 +30,11 @@ To build the server app
 and run
 
     make run_client
+
+
+## Documentation of IP Service
+
+http://34.118.27.239:8080
 
 
 

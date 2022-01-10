@@ -1,18 +1,18 @@
 
 SERVER_PORT=8001   						# port of the resource service
-AUDIENCE='localhost:${SERVER_PORT}'		# audience == url of resource service
-ISSUER_BASE_URL='localhost:8080'		# the base_url of the identity provider
+AUDIENCE=http://localhost:${SERVER_PORT}		# audience == url of resource service
+ISSUER_BASE_URL=https://dev.auth-three.com		# the base_url of the identity provider
 
 .PHONY: build_server
 
 build_server:
-	cd server; npm install; npm build
+	cd server;
 
 run_server: build_server
-	cd server; SERVER_PORT=${SERVER_PORT} AUDIENCE=${AUDIENCE} ISSUER_BASE_URL=${ISSUER_BASE_URL} node index.js
+	cd server; SERVER_PORT=${SERVER_PORT} AUDIENCE=${AUDIENCE} ISSUER_BASE_URL=${ISSUER_BASE_URL} DEBUG=jwks node index.js
 
 build_client:
-	cd client; yarn install; yarn build
+	cd client; npm install; npm run build
 
 run_client:
-	cd client; API_URL=${AUDIENCE} yarn start
+	cd client; API_URL=${AUDIENCE} ISSUER_BASE_URL=${ISSUER_BASE_URL} npm run start

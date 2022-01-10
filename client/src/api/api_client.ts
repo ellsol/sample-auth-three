@@ -59,7 +59,9 @@ export class ApiClient {
           get the user behind the token
       */
     async me(): Promise<MeResponse> {
-        return await this.apiClient.get("/api/users/me").then((response) => {
+        return await this.apiClient.get("/me").then((response) => {
+
+            console.log(response.data)
             return response.data;
         });
     }

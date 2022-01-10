@@ -4,11 +4,15 @@ export type Environment = {
     audience: string;
 };
 
+const devEnvironment = {
+    ipServiceURL: 'dev.auth-three.com',
+    apiBaseURL: 'http://localhost:8001',
+    audience: 'http://localhost:8001',
+}
+
 export const getEnvironment = (): Environment => {
-    return {
-        ipServiceURL: process.env.ISSUER_BASE_URL || '',
-        apiBaseURL: process.env.AUDIENCE || '',
-        audience: process.env.AUDIENCE || '',
-    }
+    const env =  devEnvironment
+    console.log(env)
+    return env
 };
 

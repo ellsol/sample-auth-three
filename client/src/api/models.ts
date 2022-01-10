@@ -4,11 +4,31 @@ export type UserTokenRole = {
     audiences: Array<string>
 }
 
+export type TokenRequest =
+    {
+        audiences: [
+            string
+        ],
+        message: string,
+        originalAppSignature: string,
+        signature: string,
+        signaturePrefix: true,
+        userERC725Address: string
+    }
+
 export type Token = {
     token: string
     refreshToken: string
     expiresIn: number
     type: string
+}
+
+export type SignMessageResponse = {
+    address: string,
+    appERC725Address: string,
+    message: string,
+    signature: string,
+    signaturePrefix: true,
 }
 
 export enum Role {
@@ -17,8 +37,8 @@ export enum Role {
 }
 
 export type MeResponse = {
-    id: string
-    role: string
+    erc725ControllerKey: string
+    erc725Address: string
 }
 
 
